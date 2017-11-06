@@ -68,15 +68,23 @@ document.onkeydown=function(event){
   }
 }
 
-window.onload=function(){
-  document.querySelectorAll(`audio`).forEach((value,index,arr)=>{
-    value.addEventListener('ended',function(){
-      let keycode=this.dataset.key;
-      let div=document.querySelector(`div[data-key='${keycode}']`);
-      div.classList.remove('playing');
-    });
-  });
+document.onkeyup=function(event){
+  let keycode=event.keyCode;
+  let div=document.querySelector(`div[data-key='${keycode}']`);
+  if(div){
+    div.classList.remove('playing');
+  }
 }
+
+// window.onload=function(){
+//   document.querySelectorAll(`audio`).forEach((value,index,arr)=>{
+//     value.addEventListener('ended',function(){
+//       let keycode=this.dataset.key;
+//       let div=document.querySelector(`div[data-key='${keycode}']`);
+//       div.classList.remove('playing');
+//     });
+//   });
+// }
 </script>
 
 
