@@ -63,11 +63,12 @@ document.onkeydown=function(event){
   let audio=document.querySelector(`audio[data-key='${keycode}']`);
   let div=document.querySelector(`div[data-key='${keycode}']`);
   if(audio){
+    audio.currentTime=0;
     audio.play();
     div.classList.add('playing');
   }
 }
-
+// 抬起按键 则动画消失
 // document.onkeyup=function(event){
 //   let keycode=event.keyCode;
 //   let div=document.querySelector(`div[data-key='${keycode}']`);
@@ -76,14 +77,24 @@ document.onkeydown=function(event){
 //   }
 // }
 
+// 播放完毕 动画消失
+// window.onload=function(){
+//   document.querySelectorAll(`audio`).forEach((value,index,arr)=>{
+//     value.addEventListener('ended',function(){
+//       let keycode=this.dataset.key;
+//       let div=document.querySelector(`div[data-key='${keycode}']`);
+//       div.classList.remove('playing');
+//     });
+//   });
+// }
+
+// 动画完毕 动画消失
 window.onload=function(){
-  document.querySelectorAll(`audio`).forEach((value,index,arr)=>{
-    value.addEventListener('ended',function(){
-      let keycode=this.dataset.key;
-      let div=document.querySelector(`div[data-key='${keycode}']`);
-      div.classList.remove('playing');
+  document.querySelectorAll('div.key').forEach((value,index,arr)=>{
+    value.addEventListener('transitionend',function(){
+      this.classList.remove('playing');
     });
-  });
+  })
 }
 </script>
 
