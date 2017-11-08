@@ -67,8 +67,49 @@
   </style>
 
   <script>
+    let hour,min,second;
+    let hour_hand,min_hand,second_hand;
+    window.onload=function (){
+      hour_hand = document.getElementsByClassName('hour-hand')[0];
+      min_hand = document.getElementsByClassName('min-hand')[0];
+      second_hand = document.getElementsByClassName('second-hand')[0];
+      updateTime();
+      setInterval(updateTime,1000);
+    }
 
+    function rot(dom,reg,type){
+      switch(type){
+        case 'hour':{
+          dom.setAttribute('style',`transform:rotate(${reg+90}deg);transform-origin:100%;width:30%;left:20%`);
+          break;
+        }
+        case 'min':{
+          dom.setAttribute('style',`transform:rotate(${reg+90}deg);transform-origin:100%;width:40%;left:10%`);
+          break;
+        }
+        case 'second':{
+          dom.setAttribute('style',`transform:rotate(${reg+90}deg);transform-origin:100%;`);
+          break;
+        }
+        default:{
+          return ;
+        }
+      }
+    }
+    
+    function showTime(){
+      rot(hour_hand,(hour+min/60)*30,'hour');
+      rot(min_hand,(min+second/60)*6,'min');
+      rot(second_hand,6*second,'second');
+    }
 
+    function updateTime(){
+      let now = new Date();
+      hour = now.getHours()%12;
+      min = now.getMinutes();
+      second = now.getSeconds();
+      showTime();
+    }
   </script>
 </body>
 </html>
