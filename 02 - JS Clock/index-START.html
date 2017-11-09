@@ -64,6 +64,28 @@
       top:50%;
     }
 
+    .hour-hand{
+      --deg:0;
+      transform: rotate(calc(var(--deg)*1deg));
+      transform-origin:100%;
+      width:30%;
+      left:20%;
+    }
+
+    .min-hand{
+      --deg:0;
+      transform: rotate(calc(var(--deg)*1deg));
+      transform-origin:100%;
+      width:40%;
+      left:10%;
+    }
+
+    .second-hand{
+      --deg:0;
+      transform: rotate(calc(var(--deg)*1deg));
+      transform-origin:100%;
+    }
+
   </style>
 
   <script>
@@ -77,30 +99,14 @@
       setInterval(updateTime,1000);
     }
 
-    function rot(dom,reg,type){
-      switch(type){
-        case 'hour':{
-          dom.setAttribute('style',`transform:rotate(${reg+90}deg);transform-origin:100%;width:30%;left:20%`);
-          break;
-        }
-        case 'min':{
-          dom.setAttribute('style',`transform:rotate(${reg+90}deg);transform-origin:100%;width:40%;left:10%`);
-          break;
-        }
-        case 'second':{
-          dom.setAttribute('style',`transform:rotate(${reg+90}deg);transform-origin:100%;`);
-          break;
-        }
-        default:{
-          return ;
-        }
-      }
+    function rot(dom,deg){
+      dom.style.setProperty('--deg',deg);
     }
     
     function showTime(){
-      rot(hour_hand,(hour+min/60)*30,'hour');
-      rot(min_hand,(min+second/60)*6,'min');
-      rot(second_hand,6*second,'second');
+      rot(hour_hand,(hour+min/60)*30);
+      rot(min_hand,(min+second/60)*6);
+      rot(second_hand,6*second);
     }
 
     function updateTime(){
