@@ -54,6 +54,30 @@
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
 
+
+    console.log(`1:Filter the list of inventors for those who were born in the 1500's\n`);
+    inventors.filter(value=>value.year>=1500&&value.year<=1599).forEach(value=>console.log(value));
+    console.log(`2. Give us an array of the inventors' first and last names`);
+    console.log(inventors.map(value=>value.first+value.last));
+    console.log(`3. Sort the inventors by birthdate, oldest to youngest`);
+    inventors.sort((a,b)=>a.year-b.year).forEach(value=>console.log(value));
+    console.log(`4. How many years did all the inventors live?`)
+    console.log(inventors.reduce((pre,now,index,arr)=>pre+now.passed-now.year,0));
+    console.log(`5. Sort the inventors by years lived`);
+    inventors.sort((a,b)=>a.passed-a.year-(b.passed-b.year)).forEach(value=>console.log(value));
+    console.log(`6. create a list of Boulevards in Paris that contain 'de' anywhere in the name`);
+    console.log(`i don't understand`);
+    console.log(`7. sort Exercise`);
+    people.sort((a,b)=>a.split(',')[1]>b.split(',')[1]).forEach(value=>console.log(value));
+    console.log(`8. Reduce Exercise`);
+    console.log(data.reduce((pre,now,index,arr)=>{
+      if(pre.hasOwnProperty(now)){
+        pre[now]++;
+      }else{
+        pre[now]=1;
+      }
+      return pre;
+    },{}));
   </script>
 </body>
 </html>
