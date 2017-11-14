@@ -53,7 +53,7 @@
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
-
+    const name = ['Boulevard Auguste-Blanqui','Boulevard Barbès','Boulevard Beaumarchais',"Boulevard de l'Amiral-Bruix","Boulevard des Capucines","Boulevard de la Chapelle","Boulevard de Clichy","Boulevard du Crime","Boulevard Haussmann","Boulevard de l'Hôpital","Boulevard des Italiens","Boulevard de la Madeleine","Boulevard de Magenta","Boulevard Montmartre","Boulevard du Montparnasse","Boulevard Raspail","Boulevard Richard-Lenoir","Boulevard de Rochechouart","Boulevard Saint-Germain","Boulevard Saint-Michel","Boulevard de Sébastopol","Boulevard de Strasbourg","Boulevard du Temple","Boulevard Voltaire","Boulevard de la Zone"];
 
     console.log(`1:Filter the list of inventors for those who were born in the 1500's\n`);
     inventors.filter(value=>value.year>=1500&&value.year<=1599).forEach(value=>console.log(value));
@@ -66,7 +66,7 @@
     console.log(`5. Sort the inventors by years lived`);
     inventors.sort((a,b)=>a.passed-a.year-(b.passed-b.year)).forEach(value=>console.log(value));
     console.log(`6. create a list of Boulevards in Paris that contain 'de' anywhere in the name`);
-    console.log(`i don't understand`);
+    console.log(name.filter(value=>value.includes('de')));
     console.log(`7. sort Exercise`);
     people.sort((a,b)=>a.split(',')[1]>b.split(',')[1]).forEach(value=>console.log(value));
     console.log(`8. Reduce Exercise`);
