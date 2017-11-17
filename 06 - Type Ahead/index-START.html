@@ -19,26 +19,27 @@
   <script>
     const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
     const cities = [];  //通过下面的方式可以异步获取到所有的城市名字
-    fetch(endpoint)
-      .then(blob => blob.json())
-      .then(data => cities.push(...data));
 
-    let list = document.querySelector('ul');
-    let listItems = document.querySelectorAll('li');
+    let list =  document.querySelector('ul');
+    (async () => {
+      await fetch(endpoint)
+        .then(blob => blob.json())
+        .then(data => cities.push(...data));
 
-    document.querySelector('input').oninput = function (e) {
-      if (this.value) {
-        list.innerHTML = '';
-        cities.forEach(value => {
-          if (value.city.toLowerCase().includes(this.value.toLowerCase())) {
-            list.append(createLi(value, this.value));
-          }
-        });
-      } else {
-        list.innerHTML = `<li>Filter for a city</li>
-    <li>or a state</li>`;
-      }
-    };
+      document.querySelector('input').oninput = function (e) {
+        if (this.value) {
+          list.innerHTML = '';
+          cities.forEach(value => {
+            if (value.city.toLowerCase().includes(this.value.toLowerCase())) {
+              list.append(createLi(value, this.value));
+            }
+          });
+        } else {
+          list.innerHTML = `<li>Filter for a city</li>
+      <li>or a state</li>`;
+        }
+      };
+    })();
 
     function createLi(value, text) {
       let city = document.createElement('li');
@@ -46,8 +47,8 @@
       population.classList.add('population');
       population.innerHTML = value.population;
       let reg = new RegExp(text, 'ig');
-      let str = value.city+", "+value.state;
-      let html = '<span>'+str.replace(reg, str => `<span class="hl">${str}</span>`)+'</span>';
+      let str = value.city + ", " + value.state;
+      let html = '<span>' + str.replace(reg, str => `<span class="hl">${str}</span>`) + '</span>';
       city.innerHTML = html;
       city.append(population);
       return city;
