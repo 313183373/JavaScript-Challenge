@@ -1,19 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>HTML5 Canvas</title>
 </head>
-<body>
-<canvas id="draw" width="800" height="800"></canvas>
-<script>
-</script>
 
-<style>
-  html, body {
-    margin:0;
-  }
-</style>
+<body>
+  <canvas id="draw" width="800" height="800">
+    您的浏览器不支持canvas！
+  </canvas>
+  <script>
+    let begin = false;
+    let canvas = document.querySelector('#draw')
+    let context = canvas.getContext('2d');
+    let radius = 50;
+    let flag = true;
+    let hue = 0;
+
+    canvas.onmousemove = function (moveEvent) {
+      if (begin) {
+        context.beginPath();
+        if (flag) {
+          radius -= 0.2;
+          if (radius <= 0) {
+            flag = false;
+            radius = 0.2;
+          }
+        } else {
+          radius += 0.2;
+          if (radius >= 50) {
+            flag = true;
+            radius = 50;
+          }
+        }
+        context.fillStyle = `hsl(${hue},100%,50%)`;
+        hue++;
+        context.arc(moveEvent.pageX, moveEvent.pageY, radius, 0, 2 * Math.PI, false);
+        context.fill();
+      }
+    }
+
+    canvas.onmousedown = function (downEvent) {
+      radius = 50;
+      begin = true;
+      canvas.onmousemove(downEvent);
+    }
+
+    canvas.onmouseup = function (upEvent) {
+      begin = false;
+    }
+
+    canvas.onmouseout = function (outEvent) {
+      begin = false;
+    }
+
+
+  </script>
+
+  <style>
+    html,
+    body {
+      margin: 0;
+    }
+  </style>
 
 </body>
+
 </html>
