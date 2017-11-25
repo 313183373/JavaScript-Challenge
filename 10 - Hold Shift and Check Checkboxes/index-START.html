@@ -101,22 +101,22 @@
 
 
     let lastChoice = 0;
-    let multipleChoid = false;
+    let multipleChioce = false;
     window.onkeydown = function (e) {
       if (e.key === "Shift") {
-        multipleChoid = true;
+        multipleChioce = true;
       }
     }
 
     window.onkeyup = function (e) {
       if (e.key === "Shift") {
-        multipleChoid = false;
+        multipleChioce = false;
       }
     }
 
     document.querySelectorAll('input').forEach((element, index) => {
       element.onclick = function (e) {
-        if (multipleChoid) {
+        if (multipleChioce) {
           document.querySelectorAll('input').forEach((element, indexB) => {
             if (between(index, lastChoice, indexB)) {
               element.checked = true;

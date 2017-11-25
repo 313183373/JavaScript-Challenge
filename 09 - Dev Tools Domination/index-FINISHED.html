@@ -17,6 +17,7 @@
       p.style.fontSize = '50px';
     }
 
+    console.time('fetching data');
     // Regular
     console.log('hello');
 
@@ -74,7 +75,7 @@
     console.count('Steve');
 
     // timing
-    console.time('fetching data');
+    
     fetch('https://api.github.com/users/wesbos')
       .then(data => data.json())
       .then(data => {
