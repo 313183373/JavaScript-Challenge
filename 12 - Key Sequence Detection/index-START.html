@@ -7,6 +7,17 @@
 </head>
 <body>
 <script>
+  const word = "Hello";
+  let input = "";
+  window.onkeypress=function(e){
+    input+=e.key;
+    if(input.length>5){
+      input = input.substr(input.length-5);
+    }
+    if(input === word){
+      alert("Your press Hello!");
+    }
+  }
 </script>
 </body>
 </html>
