@@ -153,7 +153,7 @@
 
 
     let scoll = debounce(function scoll(){
-      let height = document.body.scrollTop;
+      let height = getScrollTop();
       let imgs = document.querySelectorAll('img');
       let windowHeight = document.documentElement.clientHeight;
       console.log(1);
@@ -165,6 +165,16 @@
     },20,false);
 
     window.onscroll = scoll;
+
+    function getScrollTop() {  
+            var scrollPos;  
+            if (window.pageYOffset) {  
+            scrollPos = window.pageYOffset; }  
+            else if (document.compatMode && document.compatMode != 'BackCompat')  
+            { scrollPos = document.documentElement.scrollTop; }  
+            else if (document.body) { scrollPos = document.body.scrollTop; }   
+            return scrollPos;   
+    }
 
   </script>
 
