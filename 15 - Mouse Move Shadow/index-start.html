@@ -29,12 +29,29 @@
   }
 
   h1 {
-    text-shadow: 10px 10px 0 rgba(0,0,0,1);
+    text-shadow: var(--purpleX) var(--purpleY) 0px rgba(255,0,255,0.7),var(--greenX) var(--greenY) 0px rgba(0,255,0,0.7),var(--blueX) var(--blueY) 0px rgba(0,0,255,0.7),var(--lblueX) var(--lblueY) 0px rgba(5, 255, 255,0.7);
+    /* 紫色绿色蓝色浅蓝色 */
     font-size: 100px;
   }
   </style>
 
 <script>
+  let h1 = document.querySelector('h1');
+
+  window.onmousemove=function(e){
+    let clientWidth = document.body.clientWidth;
+    let clientHeight = document.body.clientHeight;
+    let x = e.pageX;
+    let y = e.pageY;
+    h1.style.setProperty('--purpleX',`${(clientWidth/2-x)}px`);
+    h1.style.setProperty('--purpleY',`${(clientHeight/2-y)}px`);
+    h1.style.setProperty('--blueX',`${x-clientWidth/2}px`);
+    h1.style.setProperty('--blueY',`${y-clientHeight/2}px`);
+    h1.style.setProperty('--greenX',`${x-clientWidth/2}px`);
+    h1.style.setProperty('--greenY',`${clientHeight/2-y}px`);
+    h1.style.setProperty('--lblueX',`${clientWidth/2-x}px`);
+    h1.style.setProperty('--lblueY',`${y-clientHeight/2}px`);
+  }
 </script>
 </body>
 </html>
