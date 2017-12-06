@@ -24,9 +24,33 @@
       <p>Esse quibusdam, ad, ducimus cupiditate <a href="">nulla</a>, quae magni odit <a href="">totam</a> ut consequatur eveniet sunt quam provident sapiente dicta neque quod.</p>
       <p>Aliquam <a href="">dicta</a> sequi culpa fugiat <a href="">consequuntur</a> pariatur optio ad minima, maxime <a href="">odio</a>, distinctio magni impedit tempore enim repellendus <a href="">repudiandae</a> quas!</p>
     </div>
+    <div id = "mydiv" class="highlight" style="width:var(--width) ;height:var(--height)"></div>
 
   <script>
     // 👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀
+    let mydiv = document.querySelector('#mydiv');
+    let aList = document.querySelectorAll('a');
+    aList.forEach((value,index,arr)=>{
+      value.onmouseover=function(e){
+        let {x,y}=getAbsoluteXY(this);
+        console.log(x,y);
+        mydiv.style.setProperty('--width',this.offsetWidth+"px");
+        mydiv.style.setProperty('--height',this.offsetHeight+"px");
+        mydiv.style.setProperty('--top',y+"px");
+        mydiv.style.setProperty('--left',x+"px");
+      }
+    })
+
+    function getAbsoluteXY(dom){
+      let {offsetLeft:x,offsetTop:y}=dom;
+      let parent = dom.offsetParent;
+      while(parent){
+        x+=parent.offsetLeft;
+        y+=parent.offsetTop;
+        parent = parent.offsetParent;
+      }
+      return {x,y};
+    }
   </script>
 </body>
 </html>

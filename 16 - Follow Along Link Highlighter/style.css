@@ -34,12 +34,12 @@ a {
   transition: all 0.2s;
   border-bottom:2px solid white;
   position: absolute;
-  top:0;
+  top:var(--top);
   background:white;
-  left:0;
+  left:var(--left);
   z-index: -1;
   border-radius:20px;
-  display: block;
+  display: block; 
   box-shadow: 0 0 10px rgba(0,0,0,0.2)
 }
 
