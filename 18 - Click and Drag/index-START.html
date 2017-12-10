@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Click and Drag</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <div class="items">
     <div class="item item1">01</div>
@@ -34,8 +36,28 @@
     <div class="item item25">25</div>
   </div>
 
-<script>
-</script>
+  <script>
+    let items = document.querySelector('.items');
+    let clicked = false;
+    let previousClientX = 0;
+    let previousLeft = 0;
+    items.onmousedown = function (e) {
+      clicked = true;
+      previousClientX = e.clientX;
+      previousLeft = this.scrollLeft;
+      this.classList.add('active');
+    }
+    items.onmouseup = function () {
+      clicked = false;
+      this.classList.remove('active');
+    }
+    items.onmousemove = function (e) {
+      if (clicked) {
+        this.scrollLeft = previousLeft - e.clientX + previousClientX;
+      }
+    }
+  </script>
 
-  </body>
+</body>
+
 </html>

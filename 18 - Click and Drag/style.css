@@ -25,7 +25,7 @@ body {
   border:1px solid white;
   overflow-x: scroll;
   overflow-y: hidden;
-  white-space: nowrap;
+  white-space: nowrap; /* 规定段落中的文本不进行换行 */
   user-select: none;
   cursor: pointer;
   transition: all 0.2s;
