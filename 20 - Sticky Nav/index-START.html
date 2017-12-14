@@ -54,6 +54,16 @@
   </div>
 
 <script>
+  const nav = document.querySelector('#main');
+  let height = nav.getBoundingClientRect().top;
+
+  window.onscroll=function(e){
+    if(scrollY >= height){
+      document.body.classList.add('fixed-nav');
+    }else{
+      document.body.classList.remove('fixed-nav');
+    }
+  }
 
 </script>
 
