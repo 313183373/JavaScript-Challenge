@@ -93,10 +93,18 @@
             harum asperiores culpa nostrum omnis.
         </p>
     </main>
-    <a href="#0" class="cd-top">Top</a>
+    <a href="#" class="cd-top" id="backToTop">Top</a>
 
     <script>
-        
+        const header = document.querySelector('header');
+        const a = document.querySelector('a');
+        window.onscroll=function(e){
+            if(scrollY>header.offsetHeight){
+                a.style.display = 'block';
+            }else{
+                a.style.display = 'none';
+            }
+        }
     </script>
 </body>
 

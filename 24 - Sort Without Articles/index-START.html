@@ -45,10 +45,26 @@
 
 <script>
 const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+const prefix = ['the','The','an','An','a','A'];
+const list = document.querySelector('#bands');
 
-// const sortedBands = *****; write your code here
+const sortedBands = bands.sort((a,b)=>{
+  return comparable(a)>comparable(b);
+});
 
-// 处理完后，将每一个歌名以 <li>${band}</li> 的格式加入到 document.querySelector('#bands')中即可
+function comparable(str){
+  let firstWord = str.split(/\W/)[0];
+  if(prefix.includes(firstWord)){
+    return str.substring(firstWord.length+1);
+  }
+  return str;
+}
+
+sortedBands.forEach(value=>{
+  let li = document.createElement('li');
+  li.textContent = value;
+  list.appendChild(li);
+})
 
 </script>
 

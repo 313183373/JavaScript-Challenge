@@ -11,8 +11,15 @@
 
 <script>
   window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  
+  let recognition = new SpeechRecognition();
 
+  recognition.continuous = true;
+  recognition.start();
 
+  recognition.onresult=function(e){
+    document.querySelector('.words').textContent += e.results[e.results.length-1][0].transcript;
+  }
 </script>
 
 
